@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb099e9b-24ad-4596-bf89-2c9f3b597c63" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/code.html" beforeDir="false" afterPath="$PROJECT_DIR$/code.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/images/murderoom.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/murderoom.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/images/reward1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/images/reward1.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/images/reward2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/images/reward2.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/images/reward3.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/images/reward3.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/images/room3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/room3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/page1.html" beforeDir="false" afterPath="$PROJECT_DIR$/page1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/page2.html" beforeDir="false" afterPath="$PROJECT_DIR$/page2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/page3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/page4.html" beforeDir="false" afterPath="$PROJECT_DIR$/page4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/page5.html" beforeDir="false" afterPath="$PROJECT_DIR$/page5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/page6.html" beforeDir="false" afterPath="$PROJECT_DIR$/page6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="eb099e9b-24ad-4596-bf89-2c9f3b597c63" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,11 +37,12 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/David Gitonga/PycharmProjects/mysterygame/web/images"
+    "last_opened_file_path": "C:/Users/David Gitonga/PycharmProjects/mysterygame"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\David Gitonga\PycharmProjects\mysterygame" />
       <recent name="C:\Users\David Gitonga\PycharmProjects\mysterygame\web\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
