@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Search </title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .word-search {
+      display: grid;
+      grid-template-columns: repeat(12, 40px);
+      gap: 4px;
+      justify-content: center;
+      margin: 30px auto;
+      font-family: monospace;
+      font-weight: bold;
+      user-select: none;
+    }
+
+    .cell {
+      width: 100%;
+max-width: 40px;
+40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: #1d2233;
+      color: #eaeef5;
+      border-radius: 6px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    }
+
+    .cell.highlight {
+      background: #27ae60;
+      color: #fff;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      width: 100%;
+max-width: 220px;
+220px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 1.3rem;
+    }
+
+    #digit {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-top: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Word Search Puzzle</h1>
+    <p>Find the number word hidden among the others 👀</p>
+
+    <div class="word-search" id="grid"></div>
+
+    <input id="answer" type="text" placeholder="Type the number word here">
+    <br>
+    <button onclick="checkAnswer()">Check</button>
+
+    <div id="result"></div>
+    <div id="digit">✅ Correct! Your digit is: <strong>8</strong></div>
+
+    <div class="actions">
+      <a class="button" href="page1.html">Back</a>
+    </div>
+  </main>
+
+  <script>
+    const size = 12;
+    const gridEl = document.getElementById("grid");
+    const targetWord = "FIVE"; // number word
+    const decoys = ["LOVE", "HEART", "MIND", "CODE", "HUNT", "CLUE", "HIDE", "MYSTERY", "PUZZLE"];
+    const correctDigit = 8;
+
+    let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let grid = Array.from({ length: size * size }, () =>
+      letters[Math.floor(Math.random() * letters.length)]
+    );
+
+    // Function to place a word horizontally
+    function placeWord(word, row, col) {
+      if (col + word.length > size) return false;
+      for (let i = 0; i < word.length; i++) {
+        grid[row * size + (col + i)] = word[i];
+      }
+      return true;
+    }
+
+    // Place the main number word
+    placeWord(targetWord, 2, 4); // row 2, column 3
+
+    // Place some decoy words randomly
+    decoys.forEach(word => {
+      const row = Math.floor(Math.random() * size);
+      const col = Math.floor(Math.random() * (size - word.length));
+      placeWord(word, row, col);
+    });
+
+    // Render the grid
+    grid.forEach((letter, i) => {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.textContent = letter;
+      gridEl.appendChild(cell);
+    });
+
+    function checkAnswer() {
+      const input = document.getElementById("answer").value.trim().toUpperCase();
+      const result = document.getElementById("result");
+      const digit = document.getElementById("digit");
+
+      if (input === targetWord) {
+        result.textContent = "✅ You found the hidden number word!";
+        digit.style.display = "block";
+
+        // Highlight the correct word
+        const row = 2;
+        const col = 3;
+        for (let i = 0; i < targetWord.length; i++) {
+          const index = row * size + (col + i);
+          gridEl.children[index].classList.add("highlight");
+        }
+      } else {
+        result.textContent = "❌ That’s not the hidden number. Try again!";
+      }
+    }
+  </script>
+</body>
+</html>
+
+

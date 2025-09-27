@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mystery Hunt — Page 1</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Page-1 specific styles (kept here for clarity) --- */
+
+    .image-stage {
+      position: relative;
+      width: min(900px, 92vw);
+      margin-inline: auto;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #23283a;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      background: #0d1020;
+    }
+
+    .image-stage img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Base invisible hotspot */
+.hotspot {
+  position: absolute;
+  width: 9.5%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  outline: none;
+
+  /* Make it invisible initially */
+  background: transparent;
+  box-shadow: none;
+  opacity: 0;
+  transition:
+    opacity .25s ease,
+    background .25s ease,
+    box-shadow .25s ease,
+    transform .15s ease;
+}
+
+/* Glow on hover/focus */
+.hotspot:hover,
+.hotspot:focus-visible {
+  opacity: 1; /* fade in */
+  background: radial-gradient(circle at 50% 50%, rgba(0,255,150,.38), rgba(0,255,150,0) 65%);
+  box-shadow:
+    0 0 0 2px rgba(0,255,150,.5) inset,
+    0 6px 18px rgba(0,255,150,.22),
+    0 0 22px rgba(0,255,150,.35);
+
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Optional: hide the label text unless hovering */
+.hotspot .label {
+  font-weight: 700;
+  font-size: clamp(.75rem, 1.4vw, .95rem);
+  color: #000000; /* light */
+  text-shadow: none;
+}
+
+.hotspot:hover .label {
+  opacity: 1;
+}
+    /* Position each hotspot by top/left % (edit these to match your art) */
+    .hs-ba { top: 24%; left: 13%; } /* ba → page2 */
+    .hs-bb { top: 40%; left: 68%; } /* bb → page3 */
+    .hs-bc { top: 50%; left: 50%; } /* bc → page4 */
+    .hs-bd { top: 76%; left: 40%; } /* bd → page5 */
+    .hs-be { top: 12%; left: 86%; } /* be → code page */
+
+    /* Back link container */
+    .below {
+      width: min(900px, 92vw);
+      margin: 14px auto 0;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="container" style="background:transparent;border:none;box-shadow:none;padding:0;">
+    <h1 style="margin:0 0 12px 6px;">Choose a Path</h1>
+    <p class="small" style="margin:0 0 16px 6px;">Tap a glowing spot to follow that path. Collect all four digits, then use <strong>be</strong> to enter the code.</p>
+
+    <div class="image-stage" aria-label="Puzzle map">
+      <!-- Your background image -->
+      <img src="images\murderoom.jpg" alt="Mystery map with interactive spots">
+
+      <!-- Hotspots (links). Adjust top/left % above to place them exactly. -->
+      <a class="hotspot hs-ba" href="page2.html" aria-label="ba">
+        <span class="label">ba</span>
+      </a>
+
+      <a class="hotspot hs-bb" href="page3.html" aria-label="bb">
+        <span class="label">bb</span>
+      </a>
+
+      <a class="hotspot hs-bc" href="page4.html" aria-label="bc">
+        <span class="label">bc</span>
+      </a>
+
+      <a class="hotspot hs-bd" href="page5.html" aria-label="bd">
+        <span class="label">bd</span>
+      </a>
+
+      <a class="hotspot hs-be" href="code.html" aria-label="be — enter code">
+        <span class="label">be</span>
+      </a>
+    </div>
+
+    <div class="below">
+      <a class="button" href="index.html">← Back to Start</a>
+
+    </div>
+  </main>
+</body>
+</html>
+

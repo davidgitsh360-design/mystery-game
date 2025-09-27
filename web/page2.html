@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sequence Memory Game — Page 2</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .game-container {
+      display: grid;
+      grid-template-columns: repeat(2, 120px);
+      grid-gap: 20px;
+      justify-content: center;
+      margin: 40px auto;
+    }
+
+    .color-btn {
+      width: 100%;
+max-width: 120px;
+120px;
+      height: 120px;
+      border-radius: 16px;
+      opacity: 0.8;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .color-btn:active {
+      transform: scale(0.95);
+    }
+
+    .color-btn.glow {
+      opacity: 1;
+      box-shadow: 0 0 25px 8px rgba(255, 255, 255, 0.7);
+    }
+
+    #red { background: #e74c3c; }
+    #green { background: #27ae60; }
+    #blue { background: #2980b9; }
+    #yellow { background: #f1c40f; }
+
+    #start-btn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    #digit {
+      font-size: 2rem;
+      margin-top: 15px;
+      display: none;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Sequence Memory Challenge</h1>
+    <p>Watch the sequence carefully and repeat it. Get all 10 correct to reveal the digit.</p>
+
+    <div class="game-container">
+      <div id="red" class="color-btn"></div>
+      <div id="green" class="color-btn"></div>
+      <div id="blue" class="color-btn"></div>
+      <div id="yellow" class="color-btn"></div>
+    </div>
+
+    <button id="start-btn">Start Game</button>
+    <div id="message"></div>
+    <div id="digit">🎉 Correct! Your digit is: <strong>3</strong></div>
+
+    <div class="actions">
+      <a class="button" href="page1.html"> Back</a>
+    </div>
+  </main>
+
+  <script>
+    const buttons = ["red", "green", "blue", "yellow"];
+    let sequence = [];
+    let playerSequence = [];
+    let round = 0;
+    const totalRounds = 10;
+
+    const messageEl = document.getElementById("message");
+    const digitEl = document.getElementById("digit");
+    const startBtn = document.getElementById("start-btn");
+
+    startBtn.addEventListener("click", startGame);
+    buttons.forEach(color => {
+      document.getElementById(color).addEventListener("click", () => handleClick(color));
+    });
+
+    function startGame() {
+      sequence = [];
+      playerSequence = [];
+      round = 0;
+      digitEl.style.display = "none";
+      messageEl.textContent = "Watch carefully...";
+      generateSequence();
+      setTimeout(playSequence, 800);
+    }
+
+    function generateSequence() {
+      for (let i = 0; i < totalRounds; i++) {
+        const randomColor = buttons[Math.floor(Math.random() * buttons.length)];
+        sequence.push(randomColor);
+      }
+      console.log("Generated sequence:", sequence); // debug helper
+    }
+
+    async function playSequence() {
+      const baseSpeed = 500; // starting speed in ms
+      const speed = Math.max(150, baseSpeed - round * 30); // speed gets faster each round
+      for (let i = 0; i <= round; i++) {
+        await glowButton(sequence[i], speed);
+        await sleep(speed);
+      }
+      messageEl.textContent = "Now repeat the sequence.";
+    }
+
+    function handleClick(color) {
+      if (sequence.length === 0) return; // game hasn't started
+
+      playerSequence.push(color);
+      const currentStep = playerSequence.length - 1;
+
+      if (playerSequence[currentStep] !== sequence[currentStep]) {
+        messageEl.textContent = "❌ Wrong sequence. Try again!";
+        playerSequence = [];
+        round = 0;
+        return;
+      }
+
+      if (playerSequence.length === sequence.length) {
+        // Completed full sequence
+        messageEl.textContent = "✅ All 10 correct!";
+        digitEl.style.display = "block";
+      } else if (playerSequence.length - 1 === round) {
+        // Completed current round correctly
+        round++;
+        playerSequence = [];
+        setTimeout(() => {
+          messageEl.textContent = "Next round...";
+          playSequence();
+        }, 800);
+      }
+    }
+
+    function glowButton(color, speed = 500) {
+      return new Promise(resolve => {
+        const btn = document.getElementById(color);
+        btn.classList.add("glow");
+        setTimeout(() => {
+          btn.classList.remove("glow");
+          resolve();
+        }, speed);
+      });
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  </script>
+</body>
+</html>
+
+

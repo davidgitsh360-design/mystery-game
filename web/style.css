@@ -1,0 +1,148 @@
+/* style.css */
+:root {
+  --bg: #0f1115;
+  --card: #151822;
+  --text: #eaeef5;
+  --muted: #9aa3b2;
+  --accent: #6ee7ff;
+  --ok: #7CFC00;
+  --err: #ff6b6b;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(80% 80% at 50% 10%, #151a24 0%, var(--bg) 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: min(780px, 92vw);
+  background: var(--card);
+  border: 1px solid #23283a;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  padding: 28px;
+  border-radius: 20px;
+}
+
+h1, h2 { margin: 0 0 12px 0; }
+p { color: var(--muted); line-height: 1.6; }
+
+.actions { margin-top: 18px; display: grid; gap: 10px; }
+.actions.grid-2 { grid-template-columns: 1fr 1fr; }
+
+button, a.button {
+  appearance: none;
+  border: none;
+  background: #1d2233;
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: .15s transform ease, .2s background ease, .2s box-shadow ease;
+  border: 1px solid #2a3550;
+}
+
+button:hover, a.button:hover {
+  transform: translateY(-1px);
+  background: #222944;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+.small { font-size: .9rem; color: var(--muted); }
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #2a3550;
+  background: #0e1324;
+  color: var(--text);
+  outline: none;
+}
+
+.feedback { margin-top: 10px; font-weight: 600; }
+.feedback.ok { color: var(--ok); }
+.feedback.err { color: var(--err); }
+
+.code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #d1eaff; }
+.hr { height: 1px; background: #23283a; margin: 18px 0; }
+footer { margin-top: 18px; color: var(--muted); font-size: .9rem; }
+
+/* 📱 Responsive styling for mobile devices */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .container {
+    width: 100%;
+    padding: 12px;
+  }
+
+  /* ✅ Make buttons and links larger for touch */
+  button, .button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px;
+  }
+
+  /* ✅ Resize puzzle grids */
+  .game-container,
+  .word-search {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 6px;
+  }
+
+  .color-btn {
+    width: 70px;
+    height: 70px;
+  }
+
+  /* ✅ Slideshow images scale automatically */
+  .slideshow {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 3 / 2; /* keeps shape on mobile */
+  margin: 30px auto;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* scales without stretching */
+}
+
+  /* ✅ Adjust message box for small screens */
+  .message-box {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  /* ✅ Make input fields responsive */
+  input {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  /* ✅ Light switch puzzle container */
+  .light-container {
+    width: 100%;
+  }
+
+  .switches {
+    flex-direction: column;
+    gap: 14px;
+  }
+}

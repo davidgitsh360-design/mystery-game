@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reward 🎉</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .slideshow {
+      position: relative;
+      width: min(500px, 90vw);
+      height: 320px;
+      margin: 30px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .controls {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .controls button {
+      width: 100%;
+max-width: 14px;
+14px;
+      height: 14px;
+      border-radius: 50%;
+      border: none;
+      background: #666;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .controls button.active {
+      background: #27ae60;
+    }
+
+    .message-box {
+      margin-top: 30px;
+      max-width: 600px;
+      margin-inline: auto;
+      padding: 20px;
+      border-radius: 16px;
+      background: #1d2233;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .message-box h2 {
+      margin-bottom: 10px;
+      font-size: 1.6rem;
+    }
+
+    .message-box p {
+      font-size: 1.1rem;
+      color: #d1d8e0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>🎉 You Did It!</h1>
+    <p>Here’s your final surprise ❤️</p>
+
+    <!-- 📸 Slideshow -->
+    <div class="slideshow" id="slideshow">
+      <div class="slide active"><img src="images/reward1.jpeg" alt="Memory 1"></div>
+      <div class="slide"><img src="images/reward2.jpeg" alt="Memory 2"></div>
+      <div class="slide"><img src="images/reward3.jpeg" alt="Memory 3"></div>
+    </div>
+
+    <!-- Slideshow dots -->
+    <div class="controls" id="controls">
+      <button onclick="showSlide(0)" class="active"></button>
+      <button onclick="showSlide(1)"></button>
+      <button onclick="showSlide(2)"></button>
+    </div>
+
+    <!-- 💌 Message section -->
+    <div class="message-box">
+      <h2>💌 A Special Message</h2>
+      <p>
+        Kalahari you set my soul on fire. You are an incredibly beautiful complex and intricate human being.
+        I have loved getting to know you and the deeper I look the more there is to find. You are so
+        thoughtful and caring and a lil mean and grumpy sometimes. You are such a hardworker and so beautifully
+        resilient. I admire how you think and ponder, how you look at the world and how you take every chance to grow
+        and be better. You are the light and the darkness that surrounds it.
+        You are so (i'm not finding an adjective that fits) real.
+        It is a pleasure to experience you.
+        All of you.
+      </p>
+    </div>
+
+    <div class="actions" style="margin-top: 25px;">
+      <a class="button" href="index.html">Play Again</a>
+    </div>
+  </main>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.controls button');
+
+    function showSlide(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    // Auto-slide every 4 seconds
+    setInterval(() => {
+      let next = (current + 1) % slides.length;
+      showSlide(next);
+    }, 4000);
+  </script>
+</body>
+</html>

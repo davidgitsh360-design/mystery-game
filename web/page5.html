@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Breaker — Page 5</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .clues {
+      margin-top: 20px;
+      text-align: left;
+      max-width: 500px;
+      margin-inline: auto;
+      background: #1d2233;
+      padding: 15px;
+      border-radius: 12px;
+      color: #eaeef5;
+      font-size: 1rem;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.2rem;
+      width: 100%;
+max-width: 160px;
+160px;
+      text-align: center;
+      margin-top: 20px;
+      letter-spacing: 8px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .feedback {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .digit-box {
+      width: 100%;
+max-width: 50px;
+50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .correct {
+      background: #27ae60; /* green */
+    }
+    .close {
+      background: #f1c40f; /* yellow */
+      color: #000;
+    }
+    .wrong {
+      background: #e74c3c; /* red */
+    }
+
+    #digit {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Code Breaker Puzzle</h1>
+    <p>Use the clues below to guess the 4-digit code. You have <strong>6 attempts</strong>!</p>
+
+    <div class="clues">
+      <ul>
+        <li>🔢 One digit ate nine.</li>
+        <li>🎓 One digit is a quarter of a dozen.</li>
+        <li>☀️ One digit divides a clock by a third of thirty six.</li>
+        <li>🎲 One digit is the number of pairs in a standard deck of cards (52 cards).</li>
+      </ul>
+    </div>
+
+    <input id="guess" type="text" maxlength="4" placeholder="----" />
+    <br />
+    <button onclick="checkGuess()">Check Code</button>
+
+    <div id="attempts"></div>
+
+    <div id="digit">✅ Correct! Your digit is: <strong>6</strong></div>
+
+    <div class="actions">
+      <a class="button" href="page1.html"> Back</a>
+    </div>
+  </main>
+
+  <script>
+    const secretCode = "5732"; // ✅ The code
+    let attemptsLeft = 6;
+
+    function checkGuess() {
+      const input = document.getElementById("guess").value.trim();
+      const attemptsDiv = document.getElementById("attempts");
+      const digit = document.getElementById("digit");
+
+      if (input.length !== 4 || isNaN(input)) {
+        alert("Please enter a 4-digit number.");
+        return;
+      }
+
+      attemptsLeft--;
+      const feedback = document.createElement("div");
+      feedback.className = "feedback";
+
+      let correctDigits = 0;
+
+      for (let i = 0; i < 4; i++) {
+        const box = document.createElement("div");
+        box.className = "digit-box";
+
+        if (input[i] === secretCode[i]) {
+          box.classList.add("correct");
+          correctDigits++;
+        } else if (secretCode.includes(input[i])) {
+          box.classList.add("close");
+        } else {
+          box.classList.add("wrong");
+        }
+
+        box.textContent = input[i];
+        feedback.appendChild(box);
+      }
+
+      attemptsDiv.appendChild(feedback);
+
+      if (input === secretCode) {
+        digit.style.display = "block";
+        attemptsDiv.innerHTML += "<p>🎉 You cracked the code!</p>";
+        document.getElementById("guess").disabled = true;
+      } else if (attemptsLeft <= 0) {
+        attemptsDiv.innerHTML += "<p>❌ No attempts left. The code was " + secretCode + ".</p>";
+        document.getElementById("guess").disabled = true;
+      } else {
+        attemptsDiv.innerHTML += `<p>Attempts left: ${attemptsLeft}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

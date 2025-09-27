@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mystery Hunt — Enter Code</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Enter the 4-Digit Code</h1>
+    <p>Use the four digits you collected to unlock your surprise.</p>
+    <input id="codeInput" type="text" inputmode="numeric" maxlength="4" placeholder="e.g. 1234">
+    <div class="actions">
+      <button onclick="checkCode('codeInput','fb')">Unlock</button>
+      <a class="button" href="page1.html"> Back</a>
+    </div>
+    <div id="fb" class="feedback"></div>
+    <footer class="small">Hint: the order matches the buttons: ba, bb, bc, bd.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

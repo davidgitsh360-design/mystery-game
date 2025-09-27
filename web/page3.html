@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evidence Board</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .light-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+max-width: 400px;
+400px;
+      max-width: 90vw;
+      margin-top: 20px;
+      border: 4px solid #222;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .light-container img {
+      width: 100%;
+      display: block;
+      filter: brightness(0.3);
+      transition: filter 0.3s ease;
+    }
+
+    /* Light overlays */
+    .light {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      mix-blend-mode: screen;
+    }
+
+    .light.red { background: rgba(255, 0, 0, 0.5); }
+    .light.green { background: rgba(0, 255, 0, 0.5); }
+    .light.blue { background: rgba(0, 0, 255, 0.5); }
+
+    /* The hidden digit */
+    #hidden-digit {
+      position: absolute;
+      top: 20%;
+      left: 83%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: 100;
+      color: yellow;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      text-shadow: 0 0 10px rgba(255, 255, 100, 0.3);
+    }
+
+    /* Switches */
+    .switches {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .switch {
+      width: 100%;
+max-width: 80px;
+80px;
+      height: 40px;
+      border-radius: 20px;
+      background: #333;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .switch::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 100%;
+max-width: 30px;
+30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #bbb;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .switch.on::before {
+      transform: translateX(40px);
+      background: #fff;
+    }
+
+    .switch.red.on { background: #e74c3c; }
+    .switch.green.on { background: #27ae60; }
+    .switch.blue.on { background: #2980b9; }
+
+    .actions {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Evidence Board</h1>
+
+
+    <div class="light-container">
+      <img src="images/room3.jpg" alt="Dark room puzzle image">
+      <div class="light red" id="red-light"></div>
+      <div class="light green" id="green-light"></div>
+      <div class="light blue" id="blue-light"></div>
+      <div id="hidden-digit">4</div>
+    </div>
+
+    <div class="switches">
+      <div class="switch red" id="red-switch"></div>
+      <div class="switch green" id="green-switch"></div>
+      <div class="switch blue" id="blue-switch"></div>
+    </div>
+
+    <div class="actions">
+      <a class="button" href="page1.html"> Back </a>
+    </div>
+  </main>
+
+  <script>
+    const redSwitch = document.getElementById("red-switch");
+    const greenSwitch = document.getElementById("green-switch");
+    const blueSwitch = document.getElementById("blue-switch");
+
+    const redLight = document.getElementById("red-light");
+    const greenLight = document.getElementById("green-light");
+    const blueLight = document.getElementById("blue-light");
+
+    const digit = document.getElementById("hidden-digit");
+
+    redSwitch.addEventListener("click", () => toggleLight("red"));
+    greenSwitch.addEventListener("click", () => toggleLight("green"));
+    blueSwitch.addEventListener("click", () => toggleLight("blue"));
+
+    function toggleLight(color) {
+      const switchEl = document.getElementById(`${color}-switch`);
+      const lightEl = document.getElementById(`${color}-light`);
+      switchEl.classList.toggle("on");
+      lightEl.style.opacity = switchEl.classList.contains("on") ? "1" : "0";
+
+      checkCombination();
+    }
+
+    function checkCombination() {
+      const redOn = redSwitch.classList.contains("on");
+      const greenOn = greenSwitch.classList.contains("on");
+      const blueOn = blueSwitch.classList.contains("on");
+
+      // Show digit only if red + blue are on together
+      if (redOn && blueOn && !greenOn) {
+        digit.style.opacity = "0.2";
+      } else {
+        digit.style.opacity = "0";
+      }
+    }
+  </script>
+</body>
+</html>
+
